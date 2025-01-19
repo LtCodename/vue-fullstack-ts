@@ -2,10 +2,10 @@
   <v-app>
     <v-toolbar class="main-toolbar" color="primary">
       <v-btn to="/">Messages</v-btn>
-      <v-btn to="/NewMessage">New Message</v-btn>
+      <v-btn to="/new-message">New Message</v-btn>
       <v-spacer />
-      <v-btn v-if="!$store.state.token" flat to="/Register">Register</v-btn>
-      <v-btn v-if="!$store.state.token" flat to="login">Login</v-btn>
+      <v-btn v-if="!$store.state.token" flat to="/register">Register</v-btn>
+      <v-btn v-if="!$store.state.token" flat to="/login">Login</v-btn>
       <v-btn v-if="$store.state.token" flat @click="$store.commit('logout')"
         >Logout</v-btn
       >

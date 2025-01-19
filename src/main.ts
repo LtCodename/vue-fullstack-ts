@@ -14,14 +14,14 @@ import store from "./store";
 
 const routes = [
   { path: "/", component: MessagesPage },
-  { path: "/NewMessage", component: NewMessage },
-  { path: "/Message/:id", component: MessagePage },
-  { path: "/Register", component: RegisterPage },
+  { path: "/new-message", component: NewMessage },
+  { path: "/message/:id", component: MessagePage },
+  { path: "/register", component: RegisterPage },
   { path: "/login", component: LoginPage },
 ];
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL), // Use history mode for clean URLs
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 });
 
