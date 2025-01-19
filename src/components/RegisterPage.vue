@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card tile>
     <v-toolbar color="primary">
       <v-toolbar-title>Register</v-toolbar-title>
     </v-toolbar>

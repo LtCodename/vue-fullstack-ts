@@ -1,9 +1,11 @@
 <template>
-  <v-card>
+  <v-card tile>
     <v-toolbar color="primary">
       <v-toolbar-title>Message</v-toolbar-title>
     </v-toolbar>
-    <v-card-text>{{ message.text }}</v-card-text>
+    <v-card-item>
+      <v-toolbar-title>{{ message.text }}</v-toolbar-title>
+    </v-card-item>
   </v-card>
 </template>
 

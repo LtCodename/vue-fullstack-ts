@@ -11,7 +11,7 @@
       >
     </v-toolbar>
 
-    <v-content>
+    <v-content class="content">
       <router-view />
     </v-content>
   </v-app>
@@ -29,5 +29,9 @@ export default {
 <style>
 .main-toolbar {
   margin-bottom: 10px;
+}
+
+.content {
+  padding: 10px;
 }
 </style>
