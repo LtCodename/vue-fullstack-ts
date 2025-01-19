@@ -19,7 +19,7 @@
 <script>
 export default {
   async created() {
-    this.$store.dispatch("getMessages");
+    this.$store.dispatch('getMessages');
   },
 };
 </script>

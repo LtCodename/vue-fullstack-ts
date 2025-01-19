@@ -1,7 +1,6 @@
-// @ts-ignore
 // TODO: why "vuex" is not found?
-import { createStore } from "vuex";
-import axios from "axios";
+import { createStore } from 'vuex';
+import axios from 'axios';
 
 interface State {
   messages: Message[];
@@ -21,7 +20,7 @@ interface AuthData {
 const store = createStore({
   state: {
     messages: [],
-    token: localStorage.getItem("token") || "",
+    token: localStorage.getItem('token') || '',
   },
   mutations: {
     updateMessages(state: State, messages: Message[]) {
@@ -34,47 +33,43 @@ const store = createStore({
       state.token = token;
     },
     logout(state: State) {
-      state.token = "";
+      state.token = '';
       localStorage.clear();
     },
   },
   actions: {
-    // @ts-ignore
     // TODO: add a proper type for the commit function
     async getMessages({ commit }) {
-      const messages = (await axios.get("http://localhost:3000/messages")).data;
-      commit("updateMessages", messages);
+      const messages = (await axios.get('http://localhost:3000/messages')).data;
+      commit('updateMessages', messages);
     },
-    // @ts-ignore
     async postNewMessage({ commit }, newMessage: Message) {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem('token');
       axios.defaults.headers.common.Authorization = token;
       const msg: Message = (
-        await axios.post("http://localhost:3000/messages", {
+        await axios.post('http://localhost:3000/messages', {
           message: newMessage,
         })
       ).data;
-      commit("postNewMessage", msg);
+      commit('postNewMessage', msg);
     },
-    async getMessage(_: any, id: string) {
+    async getMessage(_, id: string) {
       return axios.get(`http://localhost:3000/messages/${id}`);
     },
-    // @ts-ignore
     async register({ commit }, authData: AuthData) {
       const token = (
-        await axios.post("http://localhost:3000/register", authData)
+        await axios.post('http://localhost:3000/register', authData)
       ).data;
-      localStorage.setItem("token", token);
+      localStorage.setItem('token', token);
       axios.defaults.headers.common.Authorization = token;
-      commit("auth", token);
+      commit('auth', token);
     },
-    // @ts-ignore
     async login({ commit }, authData: AuthData) {
-      const token = (await axios.post("http://localhost:3000/login", authData))
+      const token = (await axios.post('http://localhost:3000/login', authData))
         .data;
-      localStorage.setItem("token", token);
+      localStorage.setItem('token', token);
       axios.defaults.headers.common.Authorization = token;
-      commit("auth", token);
+      commit('auth', token);
     },
   },
 });

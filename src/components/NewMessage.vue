@@ -23,7 +23,7 @@
 export default {
   data() {
     return {
-      message: "",
+      message: '',
     };
   },
   computed: {
@@ -33,8 +33,8 @@ export default {
   },
   methods: {
     async submit() {
-      this.$store.dispatch("postNewMessage", this.message);
-      this.message = "";
+      this.$store.dispatch('postNewMessage', this.message);
+      this.message = '';
     },
   },
 };

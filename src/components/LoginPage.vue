@@ -29,18 +29,18 @@
 export default {
   data() {
     return {
-      userName: "",
-      password: "",
+      userName: '',
+      password: '',
     };
   },
   methods: {
     async login() {
-      this.$store.dispatch("login", {
+      this.$store.dispatch('login', {
         userName: this.userName,
         password: this.password,
       });
-      this.userName = "";
-      this.password = "";
+      this.userName = '';
+      this.password = '';
     },
   },
 };

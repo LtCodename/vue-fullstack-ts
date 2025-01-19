@@ -11,12 +11,12 @@
 export default {
   data() {
     return {
-      message: "",
+      message: '',
     };
   },
   async created() {
     this.message = (
-      await this.$store.dispatch("getMessage", this.$route.params.id)
+      await this.$store.dispatch('getMessage', this.$route.params.id)
     ).data;
   },
 };
