@@ -7,7 +7,7 @@
       <v-container>
         <v-layout>
           <v-text-field
-            v-model="messageBody"
+            v-model="message"
             label="Message"
             required
           ></v-text-field>
@@ -23,13 +23,13 @@
 export default {
   data() {
     return {
-      messageBody: "",
+      message: "",
     };
   },
   methods: {
     async submit() {
       try {
-        this.$store.dispatch("newMessage", this.messageBody);
+        this.$store.dispatch("postNewMessage", this.message);
       } catch (error) {
         // console.error(error);
       }

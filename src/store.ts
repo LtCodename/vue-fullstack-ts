@@ -10,7 +10,7 @@ interface State {
 
 interface Message {
   user: string;
-  message: string;
+  text: string;
 }
 
 interface RegisterData {
@@ -27,7 +27,7 @@ const store = createStore({
     updateMessages(state: State, messages: Message[]) {
       state.messages = messages;
     },
-    newMessage(state: State, newMessage: Message) {
+    postNewMessage(state: State, newMessage: Message) {
       state.messages.push(newMessage);
     },
     auth(state: State, token: string) {
@@ -46,13 +46,15 @@ const store = createStore({
       commit("updateMessages", messages);
     },
     // @ts-ignore
-    async newMessage({ commit }, newMessage: Message) {
-      const msg = (
+    async postNewMessage({ commit }, newMessage: Message) {
+      const token = localStorage.getItem("token");
+      axios.defaults.headers.common.Authorization = token;
+      const msg: Message = (
         await axios.post("http://localhost:3000/messages", {
           message: newMessage,
         })
       ).data;
-      commit("newMessage", msg.message);
+      commit("postNewMessage", msg);
     },
     async getMessage(_: any, id: string) {
       return axios.get(`http://localhost:3000/messages/${id}`);
