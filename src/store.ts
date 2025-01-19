@@ -19,7 +19,7 @@ const store = createStore({
     },
     logout(state) {
       state.token = "";
-      localStorage.clear("token");
+      localStorage.clear();
     },
   },
   actions: {
