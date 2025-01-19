@@ -10,13 +10,14 @@ import NewMessage from "./components/NewMessage.vue";
 import MessagePage from "./components/MessagePage.vue";
 import RegisterPage from "./components/RegisterPage.vue";
 import LoginPage from "./components/LoginPage.vue";
+import store from "./store";
 
 const routes = [
   { path: "/", component: MessagesPage },
   { path: "/NewMessage", component: NewMessage },
   { path: "/Message/:id", component: MessagePage },
   { path: "/Register", component: RegisterPage },
-  { path: "/LoginPage", component: LoginPage },
+  { path: "/login", component: LoginPage },
 ];
 
 const router = createRouter({
@@ -29,4 +30,4 @@ const vuetify = createVuetify({
   directives,
 });
 
-createApp(App).use(vuetify).use(router).mount("#app");
+createApp(App).use(vuetify).use(router).use(store).mount("#app");
