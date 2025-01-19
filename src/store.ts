@@ -1,6 +1,22 @@
-/* eslint-disable no-param-reassign */
+// @ts-ignore
+// TODO: why "vuex" is not found?
 import { createStore } from "vuex";
 import axios from "axios";
+
+interface State {
+  messages: Message[];
+  token: string;
+}
+
+interface Message {
+  user: string;
+  message: string;
+}
+
+interface RegisterData {
+  username: string;
+  password: string;
+}
 
 const store = createStore({
   state: {
@@ -8,37 +24,41 @@ const store = createStore({
     token: localStorage.getItem("token") || "",
   },
   mutations: {
-    updateMessages(state, messages) {
+    updateMessages(state: State, messages: Message[]) {
       state.messages = messages;
     },
-    newMessage(state, message) {
-      state.messages.push(message);
+    newMessage(state: State, newMessage: Message) {
+      state.messages.push(newMessage);
     },
-    auth(state, token) {
+    auth(state: State, token: string) {
       state.token = token;
     },
-    logout(state) {
+    logout(state: State) {
       state.token = "";
       localStorage.clear();
     },
   },
   actions: {
+    // @ts-ignore
+    // TODO: add a proper type for the commit function
     async getMessages({ commit }) {
       const messages = (await axios.get("http://localhost:3000/messages")).data;
       commit("updateMessages", messages);
     },
-    async newMessage({ commit }, messageBody) {
+    // @ts-ignore
+    async newMessage({ commit }, newMessage: Message) {
       const msg = (
         await axios.post("http://localhost:3000/messages", {
-          message: messageBody,
+          message: newMessage,
         })
       ).data;
       commit("newMessage", msg.message);
     },
-    async getMessage(_, id) {
+    async getMessage(_: any, id: string) {
       return axios.get(`http://localhost:3000/messages/${id}`);
     },
-    async register({ commit }, registerData) {
+    // @ts-ignore
+    async register({ commit }, registerData: RegisterData) {
       const token = (
         await axios.post("http://localhost:3000/register", registerData)
       ).data;
@@ -46,7 +66,8 @@ const store = createStore({
       axios.defaults.headers.common.Authorization = token;
       commit("auth", token);
     },
-    async login({ commit }, registerData) {
+    // @ts-ignore
+    async login({ commit }, registerData: RegisterData) {
       const token = (
         await axios.post("http://localhost:3000/login", registerData)
       ).data;

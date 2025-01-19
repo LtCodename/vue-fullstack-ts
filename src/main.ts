@@ -1,4 +1,5 @@
 import { createApp } from "vue";
+// @ts-ignore
 import "vuetify/styles";
 import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
