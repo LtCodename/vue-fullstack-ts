@@ -39,6 +39,8 @@ export default {
         userName: this.userName,
         password: this.password,
       });
+      this.userName = "";
+      this.password = "";
     },
   },
 };

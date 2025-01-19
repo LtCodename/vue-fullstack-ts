@@ -13,8 +13,8 @@ interface Message {
   text: string;
 }
 
-interface RegisterData {
-  username: string;
+interface AuthData {
+  userName: string;
   password: string;
 }
 
@@ -60,19 +60,18 @@ const store = createStore({
       return axios.get(`http://localhost:3000/messages/${id}`);
     },
     // @ts-ignore
-    async register({ commit }, registerData: RegisterData) {
+    async register({ commit }, authData: AuthData) {
       const token = (
-        await axios.post("http://localhost:3000/register", registerData)
+        await axios.post("http://localhost:3000/register", authData)
       ).data;
       localStorage.setItem("token", token);
       axios.defaults.headers.common.Authorization = token;
       commit("auth", token);
     },
     // @ts-ignore
-    async login({ commit }, registerData: RegisterData) {
-      const token = (
-        await axios.post("http://localhost:3000/login", registerData)
-      ).data;
+    async login({ commit }, authData: AuthData) {
+      const token = (await axios.post("http://localhost:3000/login", authData))
+        .data;
       localStorage.setItem("token", token);
       axios.defaults.headers.common.Authorization = token;
       commit("auth", token);

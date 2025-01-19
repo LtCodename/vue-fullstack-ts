@@ -4,9 +4,9 @@
       <v-btn to="/">Messages</v-btn>
       <v-btn to="/new-message">New Message</v-btn>
       <v-spacer />
-      <v-btn v-if="!$store.state.token" flat to="/register">Register</v-btn>
-      <v-btn v-if="!$store.state.token" flat to="/login">Login</v-btn>
-      <v-btn v-if="$store.state.token" flat @click="$store.commit('logout')"
+      <v-btn v-if="!$store.state.token" to="/register">Register</v-btn>
+      <v-btn v-if="!$store.state.token" to="/login">Login</v-btn>
+      <v-btn v-if="$store.state.token" @click="$store.commit('logout')"
         >Logout</v-btn
       >
     </v-toolbar>

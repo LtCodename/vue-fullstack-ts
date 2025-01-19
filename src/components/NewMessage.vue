@@ -14,7 +14,7 @@
         </v-layout>
       </v-container>
 
-      <v-btn @click="submit">submit</v-btn>
+      <v-btn :disabled="!token" @click="submit">submit</v-btn>
     </v-form>
   </v-card>
 </template>
@@ -26,13 +26,15 @@ export default {
       message: "",
     };
   },
+  computed: {
+    token() {
+      return this.$store.state.token;
+    },
+  },
   methods: {
     async submit() {
-      try {
-        this.$store.dispatch("postNewMessage", this.message);
-      } catch (error) {
-        // console.error(error);
-      }
+      this.$store.dispatch("postNewMessage", this.message);
+      this.message = "";
     },
   },
 };
